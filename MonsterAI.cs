@@ -37,8 +37,7 @@ abstract class MonsterAI
 
     protected void Heal(string potionName)
     {
-        HP += Potion.GetPotionHeal(potionName);
-        if (HP > 100) HP = 100;
+        HP = Math.Min(100,HP += Potion.GetPotionHeal(potionName));
     }
 
     public void ChangeWeapon(string weaponName)

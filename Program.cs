@@ -12,6 +12,6 @@
         human.Attack();
 
         Console.WriteLine(human.AttackPower);
-        Console.WriteLine(human.Defense());
+        Console.WriteLine(human.DefensePower);
     }
 }

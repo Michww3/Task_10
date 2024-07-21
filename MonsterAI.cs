@@ -8,16 +8,18 @@ using Task_10;
 
 abstract class MonsterAI
 {
-    private Random Random = new();
+    private readonly Random random = new();
 
     protected int baseattackPower = 10;
     protected int basedefencePower = 10;
     protected string weapon = "None";
     protected string armor = "None";
+
     protected int HP = 100;
 
-    public virtual int DefensePower { get; }
-    public virtual int AttackPower { get; }
+    public abstract int MaxHP { get; set; }
+    public abstract int DefensePower { get; }
+    public abstract int AttackPower { get; }
 
     public void TemplateMethod()
     {
@@ -27,7 +29,7 @@ abstract class MonsterAI
 
     public int Attack()
     {
-        return AttackPower + Random.Next(-AttackPower / 10 , AttackPower / 10);
+        return AttackPower + random.Next(-AttackPower / 10, AttackPower / 10);
     }
 
     public int Defense()
@@ -37,7 +39,12 @@ abstract class MonsterAI
 
     protected void Heal(string potionName)
     {
-        HP = Math.Min(100,HP += Potion.GetPotionHeal(potionName));
+        HP = Math.Min(MaxHP, HP += Potion.GetPotionHeal(potionName));
+    }
+
+    protected void Heal(int healStrength, Human entity)
+    {
+        entity.HP = Math.Min(MaxHP, HP += healStrength);
     }
 
     public void ChangeWeapon(string weaponName)

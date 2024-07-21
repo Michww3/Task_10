@@ -11,4 +11,5 @@ class Orc : MonsterAI
     { get { return (baseattackPower + 10) * Weapon.GetWeaponPower(armor); } }
     public override int DefensePower
     { get { return (basedefencePower + 5) * Armor.GetArmorPower(armor); } }
+    public override int MaxHP { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 }
